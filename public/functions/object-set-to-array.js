@@ -1,0 +1,1 @@
+exports.objectSetToArray = arraySet => [...arraySet];

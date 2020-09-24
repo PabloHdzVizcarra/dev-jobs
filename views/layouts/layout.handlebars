@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Martel:wght@200;300;600;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/trix/trix.css">
+  <title>{{namePage}}</title>
+</head>
+<body>
+
+  <div class="navbar">
+    <h1 class="navbar__title">
+      <a href="">devJobs</a>
+    </h1>
+
+    {{#if navbar}}
+      <div class="">
+        <form action="" class="navbar__form">
+          <input type="text" class="navbar__form-input">
+          <input type="submit" value="Buscar" class="navbar__form-submit">
+        </form>
+      </div>
+    {{/if}}
+
+  </div>
+
+  <header class="header">
+    <h2 class="header__title">{{namePage}}</h2>
+
+    {{#if tagline}}
+      <p class="header__tagline">{{tagline}}</p>
+    {{/if}}
+
+    {{#if button}}
+      <a href="/vacancies/new" class="header__button">
+        Publicar Nueva Vacante
+      </a>
+    {{/if}}
+
+  </header>
+
+  <div>
+    {{{body}}}
+  </div>
+
+  <script src="/trix/trix.js"></script>
+  <script src="/dist/bundle.js"></script>
+</body>
+</html>

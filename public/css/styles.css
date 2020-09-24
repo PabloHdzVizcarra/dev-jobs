@@ -1,0 +1,256 @@
+:root {
+  --primary: #181818;
+  --primary-l: #282828;
+  --primary-b: #494949;
+  --secondary: #0E5594;
+  --text: #ffffff;
+}
+
+body {
+  background-color: var(--primary);
+  padding: 0 10rem;
+  font-family: 'Martel', serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+
+.navbar__title a {
+  color: var(--secondary);
+  text-decoration: none;
+  font-size: 4rem;
+}
+
+.navbar__form {
+  display: flex;
+}
+
+.navbar__form-input {
+  padding: .8rem .4rem;
+  background-color: var(--primary-l);
+  border: none;
+  border-radius: 6px 0 0 6px;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.navbar__form-input:focus {
+  outline: none;
+}
+
+.navbar__form-submit {
+  background-color: var(--primary-l);
+  border: none;
+  color: var(--text);
+  font-size: 1.1rem;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid #282828;
+  padding-bottom: 10px;
+}
+
+.header__title {
+  margin: 5px 0;
+  color: var(--text);
+  font-size: 2rem;
+}
+
+.header__tagline {
+  margin: 5px 0;
+  color: var(--text);
+}
+
+.header__button {
+  text-decoration: none;
+  color: #282828;
+  background-color: #0E5594;
+  /* max-width: min-content; */
+  width: 30%;
+  text-align: center;
+  padding: 10px 5px;
+  border-radius: 6px;
+  font-weight: 900;
+
+  transition: 300ms ease background-color;
+}
+
+.header__button:hover {
+  background-color: #0B477B;
+}
+
+/* ----------- MAIN -------------- */
+.main__title {
+  color: var(--text);
+}
+
+.main__job {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #282828;
+  align-items: center;
+}
+
+.main__job-title {
+  color: var(--text);
+}
+
+.main__job-description {
+  color: var(--primary-b);
+  font-weight: bold;
+}
+
+.main__job-info {
+  color: var(--primary-b);
+  font-weight: bold;
+}
+
+.main__job-info-2 {
+  color: var(--text);
+}
+
+.main__job-button {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #3c8c40;
+  padding: 6px 30px;
+  border-radius: 6px;
+  font-weight: bold;
+
+  transition: 300ms ease background-color;
+}
+
+.main__job-button:hover {
+  background-color: #2a622c;
+}
+
+/* ------ Container Vacancies -------------- */
+
+.vacancy {
+  display: flex;
+  flex-direction: column;
+  padding: 0 5rem;
+}
+.vacancy__info {
+  color: var(--text);
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.vacancy__form {
+  display: grid;
+  gap: 10px;
+}
+
+.vacancy__form-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.vacancy__form-title__text {
+  color: var(--text);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.vacancy__form-title__input {
+  padding: .8rem .4rem;
+  background-color: var(--primary-l);
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.vacancy__form-title__input:focus {
+  outline: none;
+}
+
+.vacancy__form__selected-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.vacancy__form__selected-options__title {
+  color: var(--text);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.vacancy__form__selected-options__options {
+  padding: .8rem .4rem;
+  background-color: var(--primary-l);
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.vacancy__description {
+  background-color: var(--text);
+  padding: 20px;
+  border-radius: 6px;
+  /* -webkit-box-shadow: 5px 5px 10px 0px rgba(73,73,73,0.87);
+  -moz-box-shadow: 5px 5px 10px 0px rgba(73,73,73,0.87);
+  box-shadow: 5px 5px 10px 0px rgba(73,73,73,0.87); */
+}
+
+.vacancy__knowledge {
+  display: flex;
+  flex-direction: column;
+}
+
+.vacancy__knowledge__title {
+  color: var(--text);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.vacancy__knowledge__skills-list {
+  display: grid;
+  padding: 0;
+  gap: 5px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-rows: auto;
+}
+
+.vacancy__knowledge__skills-list li {
+  list-style: none;
+  border: 2px solid var(--secondary);
+  padding: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  color: var(--text);
+}
+
+.active {
+  background-color: var(--secondary);
+}
+
+.vacancy__form__submit {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #3c8c40;
+  padding: 10px 30px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+
+  transition: 300ms ease background-color;
+}
+
+.vacancy__form__submit:hover {
+  background-color: #2a622c;
+}
