@@ -45,13 +45,13 @@ const vacanciesSchema = new mongoose.Schema({
 });
 
 // agregamos valores al schema antes de guardarlo en la database
-vacanciesSchema.pre('save', next => {
-
+vacanciesSchema.pre('save', function (next) {
+  
   // crear la URL
   const url = slug(this.title);
   this.url = `${url}-${shortid.generate()}`;
 
   next();
-})
+});
 
 module.exports = mongoose.model("Vacancy", vacanciesSchema);

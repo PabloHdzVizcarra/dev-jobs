@@ -1,5 +1,5 @@
 <main class="vacancy">
-  <form action="/vacancies/new" method="POST" class="vacancy__form">
+  <form action="/vacancies/edit/{{vacancy.url}}" method="POST" class="vacancy__form">
     <h3 class='vacancy__info'>Informacion general</h3>
 
     <div class="vacancy__form-title">
@@ -10,6 +10,7 @@
         placeholder="Ej: React Developer" 
         required 
         class='vacancy__form-title__input'
+        value={{vacancy.title}}
       >
     </div>
     <div class="vacancy__form-title">
@@ -20,6 +21,7 @@
         placeholder="Ej: Facebook" 
         required
         class='vacancy__form-title__input'
+        value={{vacancy.company}}
       >
     </div>
     <div class="vacancy__form-title">
@@ -30,6 +32,7 @@
         placeholder="Ej: Mexico"
         required
         class='vacancy__form-title__input'
+        value={{location}}
       >
     </div>
     <div class="vacancy__form-title">
@@ -40,6 +43,7 @@
         placeholder="Ej: 500 USD" 
         required
         class='vacancy__form-title__input'
+        value={{vacancy.salary}}
       >
     </div>
 
@@ -58,14 +62,19 @@
 
     <div class="vacancy__description">
       <label> Descripcion</label>
-      <input type="hidden" id="x" name="description">
+      <input 
+        type="hidden" 
+        id="x" 
+        name="description"
+        value={{vacancy.description}}
+      >
       <trix-editor input="x"></trix-editor>
     </div>
 
     <div class="vacancy__knowledge">
       <h3 class="vacancy__knowledge__title">Conocimientos</h3>
       <ul class="vacancy__knowledge__skills-list js-skill-list">
-        {{#selectSkills a}}
+        {{#selectSkills vacancy.skills}}
         {{/selectSkills}}
       </ul>
     </div>

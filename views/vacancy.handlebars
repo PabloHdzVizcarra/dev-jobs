@@ -1,0 +1,51 @@
+<div class="grid-container">
+
+  <div class="vacancy__page">
+    <div class="vacancy__page__field-data">
+      <p class="vacancy__page__field-data__info-1">Empresa</p>
+      <p class="vacancy__page__field-data__info-2">{{vacancy.company}}</p>
+    </div>
+    <div class="vacancy__page__field-data">
+      <p class="vacancy__page__field-data__info-1">Ubicacion</p>
+      <p class="vacancy__page__field-data__info-2">{{vacancy.location}}</p>
+    </div>
+    <div class="vacancy__page__field-data">
+      <p class="vacancy__page__field-data__info-1">Contrato</p>
+      <p class="vacancy__page__field-data__info-2">{{vacancy.contract}}</p>
+    </div>
+    <div class="vacancy__page__field-data">
+      <p class="vacancy__page__field-data__info-1">Salario</p>
+      <p class="vacancy__page__field-data__info-2">${{vacancy.salary}} dls</p>
+    </div>
+  
+  </div>
+
+  <div class="vacancy__page-2">
+    <aside class="vacancy__page-2__skill-list">
+      <h2 class="vacancy__page-2__skill-list__title">Conocimientos Deseados</h2>
+      <ul class="vacancy__page-2__skill-list__ul">
+        {{#each vacancy.skills}}
+          <li class="vacancy__page-2__skill-list__li">{{this}}</li>
+        {{/each}}
+      </ul>
+      
+      
+    </aside>
+    <main class="vacancy__page-2__data">
+      <h2 class="vacancy__page-2__data__title">Descripcion del puesto</h2>
+      <div class="vacancy__page-2__data__info">
+        {{{vacancy.description}}}
+      </div>
+
+    </main>
+
+  </div>
+
+  <div class="vacancy__button">
+    <a href="/vacancies/edit/{{vacancy.url}}" class="vacancy__edit-button">
+          Editar Vacante
+    </a>
+  </div>
+
+</div>
+

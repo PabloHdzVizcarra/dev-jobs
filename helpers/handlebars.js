@@ -1,5 +1,8 @@
 module.exports = {
   selectSkills: (selected = [], options) => {
+
+    console.log(selected);
+
     const skillsList = [
       'HTML5',
       'CSS3',
@@ -26,7 +29,7 @@ module.exports = {
     let html = '';
     skillsList.forEach(skill => {
       html += `
-        <li>${skill}</li>
+        <li ${selected.includes(skill) ? 'class="active"' : ''} >${skill}</li>
       `;
     });
 

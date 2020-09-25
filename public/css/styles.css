@@ -10,6 +10,8 @@ body {
   background-color: var(--primary);
   padding: 0 10rem;
   font-family: 'Martel', serif;
+  min-height: 100vh;
+  margin: 0;
 }
 
 .navbar {
@@ -49,6 +51,7 @@ body {
   font-size: 1.1rem;
   border-radius: 0 6px 6px 0;
   cursor: pointer;
+  padding-right: 10px;
 }
 
 .header {
@@ -253,4 +256,105 @@ body {
 
 .vacancy__form__submit:hover {
   background-color: #2a622c;
+}
+
+/* --------Vacancy Page ------------ */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 2fr 1fr;
+}
+
+.vacancy__page {
+  grid-column: 1/3;
+  grid-row: 1/2;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  border-bottom: 2px solid #282828;
+  padding-bottom: 10px;
+}
+
+.vacancy__page__field-data {
+  display: grid;
+  gap: 5px;
+  height: min-content;
+}
+
+.vacancy__page__field-data__info-1 {
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--primary-b);
+}
+
+.vacancy__page__field-data__info-2 {
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+.vacancy__page-2 {
+  display: flex;
+  justify-content: space-evenly;
+  grid-column: 1/3;
+  grid-row: 2/3;
+}
+
+.vacancy__page-2__skill-list__title {
+  /* margin: 0; */
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--primary-b);
+}
+
+.vacancy__page-2__data {
+  flex: 1;
+  margin-left: 10px;
+  height: auto;
+}
+
+.vacancy__page-2__data__title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--primary-b);
+  text-align: center;
+}
+
+.vacancy__page-2__data__info {
+  color: var(--text);
+}
+
+.vacancy__page-2__skill-list__ul {
+  padding: 0;
+}
+
+.vacancy__page-2__skill-list__li {
+  text-decoration: none;
+  list-style: none;
+  color: var(--text);
+}
+
+.vacancy__edit-button {
+  text-decoration: none;
+  color: #282828;
+  background-color: #0E5594;
+  text-align: center;
+  padding: 10px 5px;
+  border-radius: 6px;
+  font-weight: 900;
+
+  transition: 300ms ease background-color;
+}
+
+.vacancy__edit-button:hover {
+  background-color: #0B477B;
+}
+
+.vacancy__button {
+  grid-column: 1/3;
+  grid-row: 3/4;
+  justify-self: center;
 }

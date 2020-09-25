@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 require('./config/db');
-
+const Handlebars = require('handlebars')
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 const express = require("express");
 const app = express();
 const exphbs = require('express-handlebars');
@@ -9,16 +10,23 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const bodyParser = require('body-parser');
 
 require('dotenv').config({ path: 'variables.env' });
+
+// habilitar body-parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // habilitar handlebars como template engine
 app.engine('handlebars',
   exphbs({
     defaultLayout: 'layout',
     // los helpers es una forma en la que comunicas script en handlebars antes de su salida
-    helpers: require('./helpers/handlebars')
-  })
+    helpers: require('./helpers/handlebars'),
+    //_ habilitamos la lectura de propiedas en los objetos con npm
+    handlebars: allowInsecurePrototypeAccess(Handlebars)
+  }),
 );
 
 // habilitar handlebars
