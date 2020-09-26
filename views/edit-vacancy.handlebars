@@ -32,7 +32,7 @@
         placeholder="Ej: Mexico"
         required
         class='vacancy__form-title__input'
-        value={{location}}
+        value={{vacancy.location}}
       >
     </div>
     <div class="vacancy__form-title">
@@ -50,11 +50,13 @@
     <div class='vacancy__form__selected-options'>
       <label class="vacancy__form__selected-options__title">Contrato</label>
       <select name="contract" class="vacancy__form__selected-options__options">
-        <option value="" disabled selected>-- Selecciona --</option>
-        <option value="freelance">Freelance</option>
-        <option value="full time">Tiempo Completo</option>
-        <option value="half time">Medio Tiempo</option>
-        <option value="for project">Por Proyecto</option>
+        {{#contractType vacancy.contract}}
+          <option value="" disabled selected>-- Selecciona --</option>
+          <option value="freelance">Freelance</option>
+          <option value="full time">Tiempo Completo</option>
+          <option value="half time">Medio Tiempo</option>
+          <option value="for project">Por Proyecto</option>
+        {{/contractType}}
       </select>
     </div>
 
@@ -81,7 +83,7 @@
 
     <div>
       <input type="hidden" name="skills" id="js-skills">
-      <input type="submit" value="Publicar" class="vacancy__form__submit">
+      <input type="submit" value="Guardar Cambios" class="vacancy__form__submit">
     </div>
 
   </form>

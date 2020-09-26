@@ -12,6 +12,7 @@ module.exports = () => {
   router.get('/vacancies/:url', vacanciesController.showVacancy);
 
   router.get('/vacancies/edit/:url', vacanciesController.editVacancy);
+  router.post('/vacancies/edit/:url', vacanciesController.saveVacancyEdited);
 
   return router;
 };

@@ -49,8 +49,6 @@ exports.editVacancy = async (req, res, next) => {
       url: req.params.url
     });
 
-    console.log(vacancyFromDatabase)
-
     res.render('edit-vacancy', {
       namePage: `Editar - ${vacancyFromDatabase.title}`,
       vacancy: vacancyFromDatabase
@@ -59,4 +57,28 @@ exports.editVacancy = async (req, res, next) => {
   } catch (error) {
     next();
   }
+}
+
+exports.saveVacancyEdited = async (req, res, next) => {
+
+  try {
+    const updateVacancy = req.body;
+    const result = convertFieldStringToArray(req.body, 'skills');
+    const vacancy = await Vacancy.findOneAndUpdate(
+      { url: req.params.url },
+      result,
+      {
+        new: true,
+        runValidators: true
+      }
+    );
+
+    res.redirect(`/vacancies/${vacancy.url}`);
+
+
+  } catch (error) {
+    console.log(error);
+    return next();
+  }
+
 }

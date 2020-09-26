@@ -34,5 +34,11 @@ module.exports = {
     });
 
     return options.fn().html = html;
+  },
+  // este codigo busca la opcion seleccionada y la selecciona
+  contractType: (selected, options) => {
+    return options.fn(this).replace(
+      new RegExp(`value="${selected}"`), '$& selected="selected"'
+    )
   }
 }
