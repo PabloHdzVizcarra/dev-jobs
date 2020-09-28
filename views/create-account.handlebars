@@ -1,0 +1,48 @@
+<main class="create-account">
+  <form action="/create-account" method="POST" class="create-account__form">
+    <div class="create-account__form__field">
+      <label class="create-account__form__field__label">Nombre</label>
+      <input 
+        type="text"
+        name="name" 
+        placeholder="Tu nombre"
+        class="create-account__form__field__input"
+      >
+    </div>
+    <div class="create-account__form__field">
+      <label class="create-account__form__field__label">Email</label>
+      <input 
+        type="email"
+        name="email" 
+        placeholder="Tu Email"
+        class="create-account__form__field__input"  
+      >
+    </div>
+    <div class="create-account__form__field">
+      <label class="create-account__form__field__label">Password</label>
+      <input 
+        type="password"
+        name="password" 
+        placeholder="Tu Password"
+        class="create-account__form__field__input"
+      >
+    </div>
+    <div class="create-account__form__field">
+      <label class="create-account__form__field__label">Repite tu password</label>
+      <input 
+        type="password"
+        name="confirm" 
+        placeholder="Repetir password"
+        class="create-account__form__field__input"
+      >
+    </div>
+
+    <div class="create-account__form__field">
+      <a href="/log-in" class="create-account__form__button-log-in">Volver a iniciar sesion</a>
+    </div>
+
+    <div class="create-account__form__field-submit">
+      <input type="submit" value="Crear Cuenta" class="create-account__form__button-submit">
+    </div>
+  </form>
+</main>

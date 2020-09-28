@@ -5,6 +5,7 @@ require('dotenv').config({ path: 'variables.env' });
 mongoose.connect(process.env.DATABASE, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 
 // si existen errores se mostraran
@@ -14,3 +15,4 @@ mongoose.connection.on('error', (error) => {
 
 // importar modelos de mongoose
 require('../models/vacancies-model');
+require('../models/users-models');

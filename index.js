@@ -11,7 +11,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const bodyParser = require('body-parser');
-
+const flash = require('connect-flash');
 require('dotenv').config({ path: 'variables.env' });
 
 // habilitar body-parser
@@ -46,7 +46,16 @@ app.use(session({
   store: new MongoStore({
     mongooseConnection: mongoose.connection
   })
-}))
+}));
+
+// mostrar alertas y flash messages
+app.use(flash());
+
+// middleware para los mensajes de flash
+app.use((req, res, next) => {
+  res.locals.messages = req.flash();
+  next();
+});
 
 app.use("/", router());
 

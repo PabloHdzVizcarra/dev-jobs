@@ -62,7 +62,6 @@ exports.editVacancy = async (req, res, next) => {
 exports.saveVacancyEdited = async (req, res, next) => {
 
   try {
-    const updateVacancy = req.body;
     const result = convertFieldStringToArray(req.body, 'skills');
     const vacancy = await Vacancy.findOneAndUpdate(
       { url: req.params.url },
