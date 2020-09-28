@@ -443,3 +443,48 @@ body {
   display: flex;
   justify-content: center;
 }
+
+/* ----------Alerts Messages ------------ */
+
+.alerts {
+  text-align: center;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 65px;
+}
+
+.show-alert {
+  /* padding: 1rem 3rem; */
+  padding: 5px 10px;
+  color: var(--text);
+  font-size: .9rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: .3rem;
+  border-radius: 6px;
+}
+
+.show-alert__correct {
+  background-color: #00C897;
+}
+
+.errors {
+  background-color: rgba(199, 32, 32, 0.945);
+}
+
+.show-alert__disappear {
+  opacity: 0;
+}
+
+
+.form-log-in {
+  padding: 20px;
+}
+
+.form-log-in-field {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}

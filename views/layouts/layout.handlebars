@@ -42,6 +42,14 @@
   </header>
 
   <div class="container-principal">
+
+    {{#if messages}}
+      <div class="js-alerts alerts">
+        {{#showAlerts messages}}
+        {{/showAlerts}}
+      </div>
+    {{/if}}
+
     {{{body}}}
   </div>
 

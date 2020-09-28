@@ -24,6 +24,8 @@ module.exports = () => {
     usersController.createNewUser
   );
 
+  router.get('/log-in', usersController.logIn);
+
   return router;
 };
 

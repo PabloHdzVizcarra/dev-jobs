@@ -5,6 +5,7 @@ const skills = new Set();
 
 document.addEventListener("DOMContentLoaded", () => {
   const skillsList = document.querySelector(".js-skill-list");
+  const alerts = document.querySelectorAll('.js-alerts');
 
   if (skillsList) {
     getSkillsSelected();
@@ -15,6 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
       addSkills(event);
     });
   }
+
+  // Limpiar las alertas
+  if (alerts) {
+    cleanAlerts();
+  }
+
 });
 
 const addSkills = (event) => {
@@ -41,3 +48,19 @@ const getSkillsSelected = () => {
     skills.add(skill.textContent);
   });
 };
+
+
+const cleanAlerts = () => {
+  const alerts = document.querySelectorAll('.js-alerts');
+
+  const interval = setInterval(() => {
+    if (alerts[0].children.length > 0) {
+      alerts[0].removeChild(alerts[0].children[0]);
+  
+    } else if (alerts[0].children.length === 0) {
+
+      clearInterval(interval);
+    }
+
+  }, 1000);
+}

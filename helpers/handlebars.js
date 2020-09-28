@@ -40,5 +40,22 @@ module.exports = {
     return options.fn(this).replace(
       new RegExp(`value="${selected}"`), '$& selected="selected"'
     )
+  },
+  showAlerts: (errors = {}, alerts) => {
+    const category = Object.keys(errors);
+    console.log(errors[category]);
+
+    let html = '';
+    if (category.length) {
+      errors[category].map(error => {
+        html += `
+        <div class="${category} show-alert">
+          ${error}
+        </div>
+        `;
+      })
+    }
+
+    return alerts.fn().html = html;
   }
 }

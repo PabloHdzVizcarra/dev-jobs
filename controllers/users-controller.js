@@ -30,18 +30,34 @@ exports.validate = (req, res, next) => {
     return next();
   }
 
-  const extractedErros = [];
-  errors.array().map((err) => extractedErros.push({ [err.param]: err.msg }));
-  console.log(extractedErros);
+  const extractedErrors = [];
+  errors.array().map((err) => extractedErrors.push(err.msg));
+  // pass the mistakes
+  req.flash('errors', extractedErrors);
+
+  res.render("create-account", {
+    namePage: "Crea tu cuenta en devJobs",
+    tagline:
+      "Comienza a publicar tus vacantes gratis, solo debes crear una cuenta",
+    messages: req.flash(),
+  });
+
+  return;
 };
 
 exports.createNewUser = async (req, res, next) => {
   
   try {
-    const user = new usersModels(req.body).save();
-    console.log(user);
+    await new usersModels(req.body).save();
     res.render("/log-in");
   } catch (error) {
-    return next();
+    req.flash('errors', error);
+    res.redirect('/create-account');
   }
 };
+
+exports.logIn = async (req, res, next) => {
+  res.render('log-in', {
+    namePage: 'Iniciar Sesion'
+  })
+}
