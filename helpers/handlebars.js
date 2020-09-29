@@ -43,7 +43,6 @@ module.exports = {
   },
   showAlerts: (errors = {}, alerts) => {
     const category = Object.keys(errors);
-    console.log(errors[category]);
 
     let html = '';
     if (category.length) {

@@ -24,6 +24,14 @@
       </div>
     {{/if}}
 
+    {{#if logOut}}
+      <div class="log-out-container">
+        <p class="text-gray mr-10">Hola! {{name}}</p>
+        <a href="/admin" class="anchor mr-10">Administracion</a>
+        <a href="/log-out" class="anchor mr-10 hover-red">Cerrar Sesion</a>
+      </div>
+    {{/if}}
+
   </div>
 
   <header class="header">

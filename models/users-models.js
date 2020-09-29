@@ -35,12 +35,22 @@ usersSchema.pre('save', async function (next) {
 
 });
 
+// envia alerta si los usuarios ya estan registrados
 usersSchema.post('save', function (error, doc, next) {
-  if (error.name === 'MongoError'&& error.code === 1100) {
+  if (error.name === 'MongoError' && error.code === 1100) {
     next('Ese correo ya esta registrado');
   } else {
     next(error);
   }
-})
+});
+
+// Users Auth
+usersSchema.methods = {
+  confirmPassword: function (password) {
+    // checamos igualdad de las passwords
+    return bcrypt.compareSync(password, this.password);
+  }
+}
+
 
 module.exports = mongoose.model('Users', usersSchema);

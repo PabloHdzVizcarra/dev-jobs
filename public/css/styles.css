@@ -473,6 +473,9 @@ body {
 .errors {
   background-color: rgba(199, 32, 32, 0.945);
 }
+.error {
+  background-color: rgba(199, 32, 32, 0.945);
+}
 
 .show-alert__disappear {
   opacity: 0;
@@ -485,6 +488,235 @@ body {
 
 .form-log-in-field {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-bottom: 10px;
+}
+
+.anchor {
+  text-decoration: none;
+  font-weight: 900;
+  color: var(--primary-b);
+
+  transition: 300ms ease color;
+}
+
+.anchor:hover {
+  color: var(--text);
+}
+
+.create-account__form__field-input {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.create-account__form__field__submit {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #3c8c40;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  padding: 10px;
+  text-align: center;
+
+  transition: 300ms ease background-color;
+}
+
+.create-account__form__field__submit:hover {
+  background-color: #2a622c;
+}
+
+/* ---------Admin Panel -------------- */
+
+.admin {
+  display: grid;
+  width: 100%;
+  justify-content: start;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  
+}
+
+.admin__title {
+  font-weight: bold;
+  color: var(--primary-b);
+  font-size: 2rem;
+}
+
+.admin__buttons__edit {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: var(--secondary);
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  padding: 10px;
+  text-align: center;
+
+  transition: 300ms ease background-color;
+}
+
+.admin__buttons__edit:hover {
+  background-color: hsl(208, 83%, 42%);
+}
+
+
+.admin__buttons__new {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: hsl(208, 83%, 32%);
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  padding: 10px;
+  text-align: center;
+
+  transition: 300ms ease background-color;
+}
+
+.admin__buttons__new:hover {
+  background-color: hsl(208, 83%, 42%);
+}
+
+.admin-vacancy__title {
+  border-top: 2px solid var(--primary-l);
+  padding: 10px 0;
+  color: var(--primary-b);
+  font-size: 2rem;
+  margin-bottom: 0;
+}
+
+.admin-vacancy__data {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-container {
+  background-color: var(--secondary);
+  text-align-last: center;
+  border-radius: 6px;
+  padding: 5px 10px;
+  transition: 300ms ease background-color;
+  cursor: pointer;
+}
+
+.btn-actions {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  
+}
+
+.text-gray {
+  color: var(--primary-b);
+  font-weight: bold;
+  margin: 5px;
+  font-size: 1.1rem;
+}
+
+.text-white {
+  color: var(--text);
+  font-weight: bold;
+  margin: 5px;
+}
+
+.color-red {
+  background-color: rgba(199, 32, 32, 0.945);
+}
+
+.color-green {
+  background-color: #3c8c40;
+}
+
+.color-yellow {
+  background-color: #f9a825;
+}
+
+.container-form {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.form-grid {
+  padding-top: 3rem;
+  display: grid;
+  gap: 10px;
+  width: 60%;
+  justify-items: center;
+}
+
+.field-flex {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  align-items: center;
+}
+
+.input-gray {
+  padding: .8rem 1rem;
+  background-color: var(--primary-l);
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.input-gray:focus {
+  outline: none;
+}
+
+.input-button {
+  
+  background-color: hsl(208, 83%, 39%);
+  text-align-last: center;
+  border-radius: 6px;
+  padding: 10px 16px;
+  cursor: pointer;
+  border: none;
+  color: var(--text);
+  font-weight: bold;
+  font-size: 1.1rem;
+
+  transition: 300ms ease background-color;
+}
+
+.input-button:hover {
+  background-color: var(--secondary);
+}
+
+.correct {
+  background-color: #2a622c;
+}
+
+.log-out-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-hello {
+  margin-right: 20px;
+  font-weight: bold;
+  color: var(--text);
+  font-size: 1.1rem;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+.hover-red:hover {
+  color: rgba(199, 32, 32, 0.945);
 }

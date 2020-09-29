@@ -1,0 +1,35 @@
+<main class='admin'>
+  <h2 class="admin__title">Navegacion</h2>
+  <div class="admin__buttons">
+    <a href="/edit-profile" class="admin__buttons__edit" >Editar Perfil</a>
+    <a href="/vacancies/new" class="admin__buttons__new">Nueva Vacante</a>
+  </div>
+
+  <h2 class="admin-vacancy__title">Tus vacantes</h2>
+  {{#if vacancies.length}}
+    {{#each vacancies}}
+      <div class="admin-vacancy__data">
+
+        <div>
+          <h3 class="text-gray">{{company}}</h3>
+          <p class="text-white">{{title}}</p>
+        </div>
+
+        <div class="btn-container color-yellow">
+          <a href="/candidates/:{{id}}" class="btn-actions">Candidatos</a>
+        </div>
+
+        <div class="btn-container color-green">
+          <a href="/vacancies/edit/{{url}}" class="btn-actions">Editar</a>
+        </div>
+
+        <div class="btn-container color-red">
+          <a href="#" class="btn-actions">Eliminar </a>
+        </div>
+
+      </div>
+    {{/each}}
+  {{else}}
+    <p>No tienes vacantes, empieza creando algunas</p>
+  {{/if}}
+</main>

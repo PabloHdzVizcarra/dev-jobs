@@ -1,11 +1,14 @@
 const mongoose = require('mongoose');
 const Vacancy = mongoose.model('Vacancy');
+const { body, validationResult } = require('express-validator');
 const { convertFieldStringToArray } = require('../public/functions/convert-string-to-array');
 
 exports.formNewVacancy = (req, res) => {
   res.render('new-vacancy', {
     namePage: 'Nueva Vacante',
-    tagline: 'Llena el formulario y publica tu vacante'
+    tagline: 'Llena el formulario y publica tu vacante',
+    logOut: true,
+    name: req.user.name
   })
 }
 
@@ -13,6 +16,8 @@ exports.addVacancy = async (req, res) => {
 
   // creamos un nuevo objecto, pero modificando los skills a un array
   const result = convertFieldStringToArray(req.body, 'skills');
+
+  result.author = req.user._id; //_ agregamos el id del usuario a la vacante
 
   // guardamos los datos en mongoose
   const vacancyInDatabase = await new Vacancy(result).save();
@@ -31,7 +36,7 @@ exports.showVacancy = async (req, res, next) => {
     res.render('vacancy', {
       namePage: vacancyFromDatabase.title,
       vacancy: vacancyFromDatabase,
-      navbar: true
+      navbar: true,
     });
 
   } catch (error) {
@@ -51,7 +56,9 @@ exports.editVacancy = async (req, res, next) => {
 
     res.render('edit-vacancy', {
       namePage: `Editar - ${vacancyFromDatabase.title}`,
-      vacancy: vacancyFromDatabase
+      vacancy: vacancyFromDatabase,
+      logOut: true,
+      name: req.user.name
     });
 
   } catch (error) {
@@ -63,6 +70,8 @@ exports.saveVacancyEdited = async (req, res, next) => {
 
   try {
     const result = convertFieldStringToArray(req.body, 'skills');
+
+
     const vacancy = await Vacancy.findOneAndUpdate(
       { url: req.params.url },
       result,
@@ -80,4 +89,36 @@ exports.saveVacancyEdited = async (req, res, next) => {
     return next();
   }
 
+}
+
+exports.vacancyValidationRules = () => [
+  body('title', 'Agrega un titulo a la vacante').notEmpty().escape(),
+  body('company', 'Agrega una empresa').escape().notEmpty(),
+  body('location', 'Agrega una ubicacion valida').escape().notEmpty(),
+  body('contract', 'Selecciona el tipo de contrato').escape().notEmpty(),
+  body('skills', 'Agrega al menos una habilidad').escape().notEmpty(),
+];
+
+// Validar y sanitizar los campos de las vacantes
+exports.validateVacancy = (req, res, next) => {
+
+  const errors = validationResult(req);
+  console.log(errors.array());
+
+  if (errors.isEmpty()) {
+    return next();
+  }
+
+  console.log('El formulario tuvo')
+  console.log(errors.array());
+
+  req.flash('errors', errors.array().map(error => error.msg));
+  res.render('new-vacancy', {
+    namePage: 'Nueva Vacante',
+    tagline: 'Llena el formulario y publica tu vacante',
+    logOut: true,
+    name: req.user.name,
+    messages: req.flash()
+  });
+  
 }

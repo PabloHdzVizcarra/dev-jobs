@@ -1,0 +1,52 @@
+<main class="container-form">
+  <form 
+    action="/edit-profile" 
+    method="POST"
+    class="form-grid"
+  >
+
+  <div class="field-flex">
+    <label class="text-gray">Nombre</label>
+    <input 
+      type="text"
+      name="name"
+      placeholder="Tu Nombre"
+      class="input-gray"
+      value="{{user.name}}"
+        
+    >
+  </div>
+
+  <div class="field-flex">
+    <label class="text-gray">Email</label>
+    <input 
+      type="email"
+      name="email"
+      placeholder="Tu Email"
+      class="input-gray"
+      value="{{user.email}}"
+        
+    >
+  </div>
+
+  <div class="field-flex">
+    <label class="text-gray">Password</label>
+    <input 
+      type="password"
+      name="password"
+      placeholder="Tu Password"
+      class="input-gray"
+    >
+  </div>
+
+  <div>
+    <input
+      class="input-button"
+      type="submit"
+      class=""
+      value="Guardar Cambios"
+    >
+  </div>
+
+  </form>
+</main>

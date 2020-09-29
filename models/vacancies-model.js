@@ -42,6 +42,11 @@ const vacanciesSchema = new mongoose.Schema({
       cv: String,
     },
   ],
+  author: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Users',
+    required: "El autor es obligatorio"
+  }
 });
 
 // agregamos valores al schema antes de guardarlo en la database

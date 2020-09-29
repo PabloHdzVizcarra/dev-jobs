@@ -12,6 +12,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
+const passport = require('./config/passport');
 require('dotenv').config({ path: 'variables.env' });
 
 // habilitar body-parser
@@ -47,6 +48,10 @@ app.use(session({
     mongooseConnection: mongoose.connection
   })
 }));
+
+// inicializar passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // mostrar alertas y flash messages
 app.use(flash());
