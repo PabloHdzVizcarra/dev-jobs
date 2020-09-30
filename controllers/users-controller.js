@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const Users = mongoose.model("Users");
 const usersModels = require("../models/users-models");
 const { body, validationResult } = require("express-validator");
+const multer = require("multer");
+const shortid = require('shortid');
 
 exports.formCreateAccount = (req, res) => {
   res.render("create-account", {
@@ -81,11 +83,14 @@ exports.editProfile = async (req, res) => {
     currentUser.password = req.body.password;
   }
 
+  if (req.file) {
+    currentUser.image = req.file.filename;
+  }
+
   req.flash('correct', 'Cabios guardados correctamente');
   await currentUser.save();
   
   res.redirect('/admin');
-  console.log(currentUser);
 }
 
 exports.rulesValidateProfile = () => [
@@ -95,7 +100,6 @@ exports.rulesValidateProfile = () => [
 
 exports.validateProfile = (req, res, next) => {
   const errors = validationResult(req);
-  console.log(errors.array());
 
   if (errors.isEmpty()) {
     return next();
@@ -111,3 +115,38 @@ exports.validateProfile = (req, res, next) => {
   })
 
 }
+
+exports.addProfileImage = (req, res, next) => {
+
+  upload(req, res, function (error) {
+    if (error instanceof multer.MulterError) {
+      return next();
+    }
+  });
+
+  next();
+
+}
+
+const multerConfig = {
+  storage: fileStorage = multer.diskStorage({
+    destination: function(req, file, cb) {
+      cb(null, __dirname + '../public/uploads');
+    },
+    filename: function(req, file, cb) {
+      const extension = file.mimetype.split('/')[1];
+      cb(null, `${shortid.generate()}.${extension}`);
+    }
+  }),
+  // Validamos los archivos a subir
+  fileFilter(req, file, cb) {
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+      cb(null, true)
+    } else {
+      cb(null, false)
+    }
+  },
+  limits: {fileSize: 100000}
+};
+
+const upload = multer(multerConfig).single('image');

@@ -109,9 +109,6 @@ exports.validateVacancy = (req, res, next) => {
     return next();
   }
 
-  console.log('El formulario tuvo')
-  console.log(errors.array());
-
   req.flash('errors', errors.array().map(error => error.msg));
   res.render('new-vacancy', {
     namePage: 'Nueva Vacante',
@@ -122,3 +119,26 @@ exports.validateVacancy = (req, res, next) => {
   });
   
 }
+
+exports.deleteVacancy = async (req, res) => {
+  console.log(req.params);
+  const { id } = req.params;
+
+  const vacancyFromDatabase = await Vacancy.findById(id);
+
+  if (verifyAuthor(vacancyFromDatabase, req.user)) {
+    //_ si es el usuario eliminar
+    vacancyFromDatabase.remove();
+    res.status(200).send("Vacante Eliminada Correctamente");
+  } else {
+    //_ no permitido
+    res.status(403).send("Error");
+  }
+};
+
+const verifyAuthor = (vacancy = {}, user = {}) => {
+  if (!vacancy.author.equals(user._id)) {
+    return false;
+  }
+  return true;
+};

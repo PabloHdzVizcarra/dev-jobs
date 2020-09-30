@@ -1,5 +1,7 @@
 const { objectSetToArray } = require("../functions/object-set-to-array");
 const { createObjSet } = require("../functions/create-set-array");
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const skills = new Set();
 
@@ -20,6 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // Limpiar las alertas
   if (alerts) {
     cleanAlerts();
+  }
+
+  //_ Delete Vacancy
+  const adminPanel = document.querySelector('.js-admin-panel');
+
+  if (adminPanel) {
+    adminPanel.addEventListener('click', actionsList);
   }
 
 });
@@ -63,4 +72,60 @@ const cleanAlerts = () => {
     }
 
   }, 1000);
+}
+
+const actionsList = event => {
+  event.preventDefault();
+
+  if (event.target.dataset.delete) {
+    Swal.fire({
+      title: 'Confirmar Eliminacion',
+      text: "Una vez eliminada no se puede recuperar!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Eliminar!',
+      cancelButtonText: 'No, Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // enviar la peticion via axios
+        const url =
+          `${location.origin}/vacancies/delete/${event.target.dataset.delete}`
+        ;
+        
+        axios
+          .delete(url, {
+            params: { url },
+          })
+          .then((response) => {
+            if (response.status === 200) {
+              Swal.fire(
+                'Eliminado!',
+                response.data,
+                'success'
+              );
+
+              // TODO: eliminar del DOM
+              event.target.parentElement.parentElement.parentElement.removeChild(
+                (event.target.parentElement.parentElement)
+              );
+              
+            }
+          })
+          .catch(() => {
+            Swal.fire({
+              type: 'error',
+              title: "Hubo un error",
+              text: 'No se pudo eliminar'
+            });
+          });
+
+      }
+    })
+    
+  } else if (event.target.tagName === 'A') {
+    
+    window.location.href = event.target.href;
+  }
 }

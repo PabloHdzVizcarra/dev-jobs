@@ -33,6 +33,10 @@ module.exports = () => {
     vacanciesController.saveVacancyEdited
   );
 
+  router.delete('/vacancies/delete/:id',
+    vacanciesController.deleteVacancy
+  );
+
   router.get("/create-account", usersController.formCreateAccount);
 
   router.post(
@@ -62,15 +66,16 @@ module.exports = () => {
   );
 
   router.post('/edit-profile',
-    param('password').customSanitizer(value => {
-      if (value) {
-        console.log('Se sanitiza password')
-        return escape(value)
-      }
-    }),
+    // param('password').customSanitizer(value => {
+    //   if (value) {
+    //     console.log('Se sanitiza password')
+    //     return escape(value)
+    //   }
+    // }),
     authController.verifyUser,
     usersController.rulesValidateProfile(),
     usersController.validateProfile,
+    usersController.addProfileImage,
     usersController.editProfile
   );
 

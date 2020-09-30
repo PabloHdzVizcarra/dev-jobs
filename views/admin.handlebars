@@ -6,30 +6,35 @@
   </div>
 
   <h2 class="admin-vacancy__title">Tus vacantes</h2>
-  {{#if vacancies.length}}
-    {{#each vacancies}}
-      <div class="admin-vacancy__data">
 
-        <div>
-          <h3 class="text-gray">{{company}}</h3>
-          <p class="text-white">{{title}}</p>
-        </div>
+    <div class="js-admin-panel">
 
-        <div class="btn-container color-yellow">
-          <a href="/candidates/:{{id}}" class="btn-actions">Candidatos</a>
-        </div>
+      {{#if vacancies.length}}
+        {{#each vacancies}}
+          <div class="admin-vacancy__data">
 
-        <div class="btn-container color-green">
-          <a href="/vacancies/edit/{{url}}" class="btn-actions">Editar</a>
-        </div>
+            <div>
+              <h3 class="text-gray">{{company}}</h3>
+              <p class="text-white">{{title}}</p>
+            </div>
 
-        <div class="btn-container color-red">
-          <a href="#" class="btn-actions">Eliminar </a>
-        </div>
+            <div class="btn-container color-yellow">
+              <a href="/candidates/:{{id}}" class="btn-actions">Candidatos</a>
+            </div>
 
-      </div>
-    {{/each}}
-  {{else}}
-    <p>No tienes vacantes, empieza creando algunas</p>
-  {{/if}}
+            <div class="btn-container color-green">
+              <a href="/vacancies/edit/{{url}}" class="btn-actions">Editar</a>
+            </div>
+
+            <div class="btn-container color-red">
+              <a href="#" class="btn-actions" data-delete="{{id}}" >Eliminar </a>
+            </div>
+
+          </div>
+        {{/each}}
+      {{else}}
+        <p class="text-white">No tienes vacantes, empieza creando algunas</p>
+      {{/if}}
+
+    </div>
 </main>
