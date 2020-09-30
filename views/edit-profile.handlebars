@@ -39,15 +39,6 @@
     >
   </div>
 
-  <div class="field-flex">
-    <label class="text-gray">Imagen</label>
-    <input 
-      type="file" 
-      name="image" 
-      placeholder="Tu imagen de perfil"
-    >
-  </div>
-
   <div>
     <input
       class="input-button"
@@ -59,5 +50,27 @@
 
   </form>
 
+  <form 
+    action="/edit-profile-img"
+    method="POST"
+    enctype="multipart/form-data"
+    class="form-grid"
+  >
+    <div class="field-flex">
+      <label class="text-gray mr-10">Imagen</label>
+      <input 
+        type="file" 
+        name="image" 
+        placeholder="Tu imagen de perfil"
+      >
+      <img src="uploads/{{user.imageProfile}}" alt="" class="image-profile" >
+    </div>
+
+    <input 
+      type="submit"
+      value="Subir Imagen"
+      class="input-button"
+    >
+  </form>
   
 </main>

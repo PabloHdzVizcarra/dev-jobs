@@ -68,7 +68,8 @@ exports.formEditProfile = (req, res) => {
     namePage: "Editar tu Perfil en devJobs",
     user: req.user,
     logOut: true,
-    name: req.user.name
+    name: req.user.name,
+    image: req.user.imageProfile
   })
 }
 
@@ -83,15 +84,15 @@ exports.editProfile = async (req, res) => {
     currentUser.password = req.body.password;
   }
 
-  if (req.file) {
-    currentUser.image = req.file.filename;
-  }
+  
 
   req.flash('correct', 'Cabios guardados correctamente');
   await currentUser.save();
   
   res.redirect('/admin');
 }
+
+
 
 exports.rulesValidateProfile = () => [
   body('name', 'El nombre no puede ir vacio').notEmpty().escape(),
@@ -124,29 +125,33 @@ exports.addProfileImage = (req, res, next) => {
     }
   });
 
-  next();
+  return next();
 
 }
 
 const multerConfig = {
   storage: fileStorage = multer.diskStorage({
     destination: function(req, file, cb) {
-      cb(null, __dirname + '../public/uploads');
+      cb(null, __dirname + "../public/uploads");
     },
-    filename: function(req, file, cb) {
+    filename: function (req, file, cb) {
       const extension = file.mimetype.split('/')[1];
       cb(null, `${shortid.generate()}.${extension}`);
     }
   }),
   // Validamos los archivos a subir
-  fileFilter(req, file, cb) {
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-      cb(null, true)
-    } else {
-      cb(null, false)
-    }
-  },
-  limits: {fileSize: 100000}
+  // 1
 };
 
 const upload = multer(multerConfig).single('image');
+
+exports.saveProfileImage = async (req, res) => {
+  const currentUser = await usersModels.findById(req.user._id);
+
+  if (req.file) {
+    currentUser.imageProfile = req.file.filename;
+    await currentUser.save();
+    req.flash('correct', 'Cabios guardados correctamente');
+    res.redirect('/admin');
+  }
+}

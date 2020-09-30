@@ -8,7 +8,8 @@ exports.formNewVacancy = (req, res) => {
     namePage: 'Nueva Vacante',
     tagline: 'Llena el formulario y publica tu vacante',
     logOut: true,
-    name: req.user.name
+    name: req.user.name,
+    image: req.user.imageProfile
   })
 }
 
@@ -28,10 +29,16 @@ exports.addVacancy = async (req, res) => {
 
 exports.showVacancy = async (req, res, next) => {
 
+  
+
   try {
+
+    // Relacionar el documento con el autor
     const vacancyFromDatabase = await Vacancy.findOne({
       url: req.params.url
-    });
+    }).populate('author');
+
+    console.log(vacancyFromDatabase)
 
     res.render('vacancy', {
       namePage: vacancyFromDatabase.title,
@@ -58,7 +65,8 @@ exports.editVacancy = async (req, res, next) => {
       namePage: `Editar - ${vacancyFromDatabase.title}`,
       vacancy: vacancyFromDatabase,
       logOut: true,
-      name: req.user.name
+      name: req.user.name,
+      image: req.user.imageProfile
     });
 
   } catch (error) {

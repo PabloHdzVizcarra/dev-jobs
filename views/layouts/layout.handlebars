@@ -27,6 +27,11 @@
     {{#if logOut}}
       <div class="log-out-container">
         <p class="text-gray mr-10">Hola! {{name}}</p>
+
+        {{#if image}}
+          <img src="/uploads/{{image}}" alt="" class="image-profile" >
+        {{/if}}
+
         <a href="/admin" class="anchor mr-10">Administracion</a>
         <a href="/log-out" class="anchor mr-10 hover-red">Cerrar Sesion</a>
       </div>

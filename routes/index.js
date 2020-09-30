@@ -5,6 +5,8 @@ const vacanciesController = require('../controllers/vacancies-controller');
 const usersController = require('../controllers/users-controller');
 const authController = require('../controllers/auth-controller');
 const { param } = require("express-validator");
+const multer = require("multer");
+var upload = multer({ dest: 'public/uploads' })
 
 module.exports = () => {
   router.get("/", homeController.showJobs);
@@ -75,8 +77,13 @@ module.exports = () => {
     authController.verifyUser,
     usersController.rulesValidateProfile(),
     usersController.validateProfile,
-    usersController.addProfileImage,
     usersController.editProfile
+  );
+
+  router.post('/edit-profile-img',
+    authController.verifyUser,
+    upload.single('image'),
+    usersController.saveProfileImage
   );
 
   return router;

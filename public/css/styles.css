@@ -648,6 +648,8 @@ body {
   height: auto;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .form-grid {
@@ -717,6 +719,15 @@ body {
 .mr-10 {
   margin-right: 10px;
 }
+
 .hover-red:hover {
   color: rgba(199, 32, 32, 0.945);
+}
+
+.image-profile {
+  width: 70px;
+  margin-right: 1rem;
+  height: 80px;
+  border: 2px solid var(--primary-l);
+  border-radius: 6px;
 }
