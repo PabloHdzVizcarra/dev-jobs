@@ -17,9 +17,9 @@
 
     {{#if navbar}}
       <div class="">
-        <form action="" class="navbar__form">
-          <input type="text" class="navbar__form-input">
-          <input type="submit" value="Buscar" class="navbar__form-submit">
+        <form action="/search" method="POST" class="navbar__form">
+          <input type="text" class="navbar__form-input" name="q">
+          <input type="submit" class="navbar__form-submit">
         </form>
       </div>
     {{/if}}

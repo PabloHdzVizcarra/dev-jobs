@@ -150,3 +150,62 @@ const verifyAuthor = (vacancy = {}, user = {}) => {
   }
   return true;
 };
+
+exports.contact = async (req, res, next) => {
+
+  try {
+    const currentVacancy = await Vacancy.findOne({ url: req.params.url });
+    const newCandidate = {
+      name: req.body.name,
+      email: req.body.email,
+      cv: req.file.filename
+    }
+
+    currentVacancy.candidates.push(newCandidate);
+    await currentVacancy.save();
+
+    req.flash('correct', 'Se envio tu curriculum con exito!!');
+    res.redirect('/');
+    
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
+exports.showCandidates = async (req, res, next) => {
+  const vacancyFromDatabase = await Vacancy.findById(req.params.id);
+  console.log(vacancyFromDatabase);
+
+  if (vacancyFromDatabase.author != req.user._id.toString()) {
+    return next();
+  } 
+
+  if (!vacancyFromDatabase) {
+    return next();
+  }
+
+  res.render('candidates', {
+    namePage: `Candidatos Vacante - ${vacancyFromDatabase.title}`,
+    logOut: true,
+    name: req.user.name,
+    image: req.user.image,
+    candidates: vacancyFromDatabase.candidates
+  })
+}
+
+exports.searchVacancy = async (req, res, next) => {
+
+  const arrayVacancies = await Vacancy.find({
+    $text: {
+      $search: req.body.q
+    }
+  });
+
+  res.render('home', {
+    namePage: `Resultados para la busqueda: ${req.body.q}`,
+    navbar: true,
+    vacancysData: arrayVacancies
+  });
+
+}

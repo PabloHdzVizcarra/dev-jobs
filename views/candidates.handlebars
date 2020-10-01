@@ -1,0 +1,24 @@
+<main class="candidates">
+  <h2 class="title-gray">Lista de Candidatos</h2>
+  {{#if candidates.length}}
+    {{#each candidates}}
+      <div class="container-candidates">
+        <div class="candidates-field">
+          <p class="text-white">Nombre: </p>
+          <p class="text-gray">{{name}}</p>
+        </div>
+        <div  class="candidates-field">
+          <p class="text-white">Email: </p>
+          <p class="text-gray">{{email}}</p>
+        </div>
+        <div class="candidates-field">
+          <a href="/uploads/{{cv}}" class="create-account__form__field__submit">
+            Ver CV
+          </a>
+        </div>
+      </div>
+    {{/each}}
+  {{else}}
+    <p>No hay candidatos en esta vacante aun</p>
+  {{/if}}
+</main>

@@ -14,6 +14,7 @@ const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const passport = require('./config/passport');
 require('dotenv').config({ path: 'variables.env' });
+const createError = require('http-errors');
 
 // habilitar body-parser
 app.use(bodyParser.json());
@@ -64,4 +65,23 @@ app.use((req, res, next) => {
 
 app.use("/", router());
 
-app.listen(process.env.PORT);
+app.use((req, res, next) => {
+  next(createError(404, 'No Encontrado'))
+});
+
+app.use((error, req, res, next) => {
+  res.locals.errorMessage = error.message;
+  const status = error.status || 500;
+  res.locals.errorStatus = status;
+  res.status(status);
+  res.render('error');
+});
+
+
+// Dejar que heroku asigne el puerto al APP
+const host = '0.0.0.0';
+const port = process.env.PORT;
+
+app.listen(port, host, () => {
+  console.log('El servidor esta funcionando')
+});

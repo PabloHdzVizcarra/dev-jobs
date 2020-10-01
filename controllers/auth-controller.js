@@ -22,6 +22,8 @@ exports.showAdminPanel = async (req, res) => {
 
   const vacanciesList = await vacancyModel.find({ author: req.user._id });
 
+  
+
   res.render('admin', {
     namePage: 'Panel de Administracion',
     tagline: 'Crea y Administra tus vacantes desde aqui',

@@ -6,7 +6,8 @@ const usersController = require('../controllers/users-controller');
 const authController = require('../controllers/auth-controller');
 const { param } = require("express-validator");
 const multer = require("multer");
-var upload = multer({ dest: 'public/uploads' })
+const upload = multer({ dest: 'public/uploads' });
+const uploadCV = multer({ dest: 'public/uploads' });
 
 module.exports = () => {
   router.get("/", homeController.showJobs);
@@ -68,12 +69,6 @@ module.exports = () => {
   );
 
   router.post('/edit-profile',
-    // param('password').customSanitizer(value => {
-    //   if (value) {
-    //     console.log('Se sanitiza password')
-    //     return escape(value)
-    //   }
-    // }),
     authController.verifyUser,
     usersController.rulesValidateProfile(),
     usersController.validateProfile,
@@ -85,6 +80,18 @@ module.exports = () => {
     upload.single('image'),
     usersController.saveProfileImage
   );
+
+  router.post('/vacancies/:url',
+    uploadCV.single('cv'),
+    vacanciesController.contact
+  );
+
+  router.get("/candidates/:id",
+    authController.verifyUser,
+    vacanciesController.showCandidates
+  );
+
+  router.post('/search', vacanciesController.searchVacancy);
 
   return router;
 };

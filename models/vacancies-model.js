@@ -59,4 +59,7 @@ vacanciesSchema.pre('save', function (next) {
   next();
 });
 
+// crear un indice
+vacanciesSchema.index({ title: 'text' });
+
 module.exports = mongoose.model("Vacancy", vacanciesSchema);

@@ -47,20 +47,51 @@
     </a>
   </div>
 
-</div>
+  <div class="container-form-flex">
+    <div class="grid-container-gap">
+      <h2 class="text-gray">Contactar Reclutador</h2>
+      <p class="text-white">Llena el siguiente formulario, sube tu curriculum y pronto te contactaremos</p>
 
-<div>
-  <div></div>
-  <div>
-    <h2>Informacion Reclutador</h2>
+      <form 
+        action="/vacancies/{{vacancy.url}}" 
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="field-flex mb-10">
+          <label class="text-gray mr-10">Nombre</label>
+          <input type="text" name="name" placeholder="Tu Nombre" class="input-gray">
+        </div>
 
-    {{#if vacancy.author.name}}
-      <p>{{vacancy.author.name}}</p>
-    {{/if}}
-    
-    {{#if vacancy.author.imageProfile}}
-      <img src="/uploads/{{vacancy.author.imageProfile}}" alt="" class="image-profile">
-    {{/if}}
+        <div class="field-flex mb-10">
+          <label class="text-gray mr-10">E-mail</label>
+          <input type="email" name="email" placeholder="Tu Email" class="input-gray">
+        </div>
 
+        <div class="field-flex mb-10">
+          <label class="text-gray mr-10">CV</label>
+          <input type="file" name="cv" class="input-gray">
+        </div>
+
+        <div class="field-flex">
+          <input type="submit" placeholder="Enviar" class="create-account__form__field__submit" value="Enviar">
+        </div>
+
+      </form>
+    </div>
+
+    <div class="container-form">
+        <h2 class="text-gray">Informacion Reclutador</h2>
+
+      {{#if vacancy.author.name}}
+        <p class="text-white">{{vacancy.author.name}}</p>
+      {{/if}}
+      
+      {{#if vacancy.author.imageProfile}}
+        <img src="/uploads/{{vacancy.author.imageProfile}}" alt="" class="image-profile">
+      {{/if}}
+
+    </div>
   </div>
+
 </div>
+
